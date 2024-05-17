@@ -17,12 +17,15 @@ public class Main {
     private static void program(CartManager manager, Scanner in) {
         while (true) {
             String command = in.next().toUpperCase();
-            if (command.equals("NEW CART")) {
-                addCart(manager,in);
-            }
+            if (command.equals("NEW")) {
+                command = in.next().toUpperCase();
+                if (command.equals("CART")) {
+                    addCart(manager, in);
+                }
 
-            if (command.equals("NEW ITEM")) {
-                newItem(manager,in);
+                if (command.equals("ITEM")) {
+                    newItem(manager, in);
+                }
             }
 
             if (command.equals("ADD")) {

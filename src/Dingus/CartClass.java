@@ -7,14 +7,14 @@ import java.util.Iterator;
 public class CartClass implements Cart{
 
     ArrayList<Item> items;
-    int volume;
+    int maxVolume;
     int volumeUsed;
     String id;
 
 
     public CartClass(String id, int volume){
         this.id=id;
-        this.volume=volume;
+        this.maxVolume =volume;
         this.volumeUsed=0;
         items=new ArrayList<>();
     }
@@ -29,7 +29,7 @@ public class CartClass implements Cart{
 
     @Override
     public void add(Item item) throws FullCartException{
-        if (!canAdd(item))
+        if (cantAdd(item))
             throw new FullCartException("Cannot add item to the cart");
         items.add(item);
         volumeUsed += item.getVolume();
@@ -50,7 +50,7 @@ public class CartClass implements Cart{
         return false;
     }
 
-    private boolean canAdd(Item item) {
-        return volumeUsed + item.getVolume() >= this.volume;
+    private boolean cantAdd(Item item) {
+        return volumeUsed + item.getVolume() > this.maxVolume;
     }
 }
